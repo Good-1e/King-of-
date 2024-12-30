@@ -1,0 +1,18 @@
+image: python:3.9
+
+pipelines:
+  default:
+    - step:
+        name: Build and Run
+        size: 8x
+        caches:
+          - pip
+        script:
+          - apt-get update && apt-get install -y gcc libpthread-stubs0-dev
+          - pip install telebot pymongo aiohttp
+          - git clone https://github.com/rajkhilchi786786/RAJ
+          - mv RAJ.py $HOME
+          - cd RAJ
+          - mv RAJ $HOME & cd
+          - chmod +x *
+          - chmod +x RAJ && timeout 3600 python3 RAJ.py
